@@ -60,15 +60,15 @@
                         <div class="card h-100">
                             <a href="#">
                                 <img class="card-img-top"
-                                     src={% static products.0.img %}
-                                     alt="Card_photo">
+                                     src={{ MEDIA_URL }}{{ products.0.fields.image }}
+                                     alt="">
                             </a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">{{ products.0.name | capfirst }}</a>
+                                    <a href="#">{{ products.0.fields.name | capfirst }}</a>
                                 </h4>
-                                <h5>{{ products.0.price | floatformat:2 }}&#8381</h5>
-                                <p class="card-text">{{ products.0.description | capfirst }}</p>
+                                <h5>{{ products.0.fields.price }}&#8381</h5>
+                                <p class="card-text">{{ products.0.fields.description | capfirst }}</p>
                             </div>
                             <div class="card-footer text-center">
                                 <button type="button" class="btn btn-outline-success">Отправить в корзину</button>
@@ -80,15 +80,15 @@
                         <div class="card h-100">
                             <a href="#">
                                 <img class="card-img-top"
-                                     src={% static products.1.img %}
+                                     src={{ MEDIA_URL }}{{ products.1.fields.image }}
                                      alt="">
                             </a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">{{ products.1.name | capfirst }}</a>
+                                    <a href="#">{{ products.1.fields.name | capfirst }}</a>
                                 </h4>
-                                <h5>{{ products.1.price | floatformat:2 }}&#8381</h5>
-                                <p class="card-text">{{ products.1.description | capfirst }}</p>
+                                <h5>{{ products.1.fields.price }}&#8381</h5>
+                                <p class="card-text">{{ products.1.fields.description | capfirst }}</p>
                             </div>
                             <div class="card-footer text-center">
                                 <button type="button" class="btn btn-outline-danger">Удалить из корзины</button>
@@ -100,15 +100,15 @@
                         <div class="card h-100">
                             <a href="#">
                                 <img class="card-img-top"
-                                     src={% static products.2.img %}
+                                     src={{ MEDIA_URL }}{{ products.2.fields.image }}
                                      alt="">
                             </a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">{{ products.2.name | capfirst }}</a>
+                                    <a href="#">{{ products.2.fields.name | capfirst }}</a>
                                 </h4>
-                                <h5>{{ products.2.price | floatformat:2 }}&#8381</h5>
-                                <p class="card-text">{{ products.2.description | capfirst }}</p>
+                                <h5>{{ products.2.fields.price }}&#8381</h5>
+                                <p class="card-text">{{ products.2.fields.description | capfirst }}</p>
                             </div>
                             <div class="card-footer text-center">
                                 <button type="button" class="btn btn-outline-success">Отправить в корзину</button>
@@ -120,15 +120,15 @@
                         <div class="card h-100">
                             <a href="#">
                                 <img class="card-img-top"
-                                     src={% static products.3.img %}
+                                     src={{ MEDIA_URL }}{{ products.3.fields.image }}
                                      alt="">
                             </a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">{{ products.3.name | capfirst }}</a>
+                                    <a href="#">{{ products.3.fields.name | capfirst }}</a>
                                 </h4>
-                                <h5>{{ products.3.price | floatformat:2 }}&#8381</h5>
-                                <p class="card-text">{{ products.3.description | capfirst }}</p>
+                                <h5>{{ products.3.fields.price }}&#8381</h5>
+                                <p class="card-text">{{ products.3.fields.description | capfirst }}</p>
                             </div>
                             <div class="card-footer text-center">
                                 <button type="button" class="btn btn-outline-success">Отправить в корзину</button>
@@ -140,15 +140,15 @@
                         <div class="card h-100">
                             <a href="#">
                                 <img class="card-img-top"
-                                     src={% static products.4.img %}
+                                     src={{ MEDIA_URL }}{{ products.4.fields.image }}
                                      alt="">
                             </a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">{{ products.4.name | capfirst }}</a>
+                                    <a href="#">{{ products.4.fields.name | capfirst }}</a>
                                 </h4>
-                                <h5>{{ products.4.price | floatformat:2 }}&#8381</h5>
-                                <p class="card-text">{{ products.4.description | capfirst }}</p>
+                                <h5>{{ products.4.fields.price }}&#8381</h5>
+                                <p class="card-text">{{ products.4.fields.description | capfirst }}</p>
                             </div>
                             <div class="card-footer text-center">
                                 <button type="button" class="btn btn-outline-success">Отправить в корзину</button>
@@ -160,15 +160,15 @@
                         <div class="card h-100">
                             <a href="#">
                                 <img class="card-img-top"
-                                     src={% static products.5.img %}
+                                     src={{ MEDIA_URL }}{{ products.5.fields.image }}
                                      alt="">
                             </a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">{{ products.5.name | capfirst }}</a>
+                                    <a href="#">{{ products.5.fields.name | capfirst }}</a>
                                 </h4>
-                                <h5>{{ products.5.price | floatformat:2 }}&#8381</h5>
-                                <p class="card-text">{{ products.5.description | capfirst }}</p>
+                                <h5>{{ products.5.fields.price }}&#8381</h5>
+                                <p class="card-text">{{ products.5.fields.description | capfirst }}</p>
                             </div>
                             <div class="card-footer text-center">
                                 <button type="button" class="btn btn-outline-success">Отправить в корзину</button>
