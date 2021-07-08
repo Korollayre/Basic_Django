@@ -3,7 +3,7 @@ from django.contrib import auth, messages
 from django.urls import reverse
 
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
-from baskets.models import Basket
+from baskets.models import Basket, total_sum, total_quantity
 
 
 def login(request):
@@ -43,9 +43,13 @@ def profile(request):
             return HttpResponseRedirect(reverse('users:profile'))
     else:
         form = UserProfileForm(instance=request.user)
+
+    user_basket = Basket.objects.filter(user=request.user)
     context = {'title': 'GeekShop - Личный кабинет',
                'form': form,
-               'baskets': Basket.objects.all(),
+               'baskets': user_basket,
+               'price_amount': total_sum(user_basket),
+               'quantity_amount': total_quantity(user_basket),
                }
     return render(request, 'users/profile.html', context)
 
