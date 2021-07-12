@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
-from baskets.models import Basket, total_sum, total_quantity
+from baskets.models import Basket
 
 
 def login(request):
@@ -51,8 +51,6 @@ def profile(request):
     context = {'title': 'GeekShop - Личный кабинет',
                'form': form,
                'baskets': user_basket,
-               'price_amount': total_sum(user_basket),
-               'quantity_amount': total_quantity(user_basket),
                }
     return render(request, 'users/profile.html', context)
 
