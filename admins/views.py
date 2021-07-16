@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.urls import reverse
 
 from users.models import User
-from admins.forms import UserAdminRegistrationForm
+from admins.forms import UserAdminRegistrationForm, UserAdminProfileForm
 
 
 def index(request):
@@ -31,7 +31,20 @@ def admin_users_create(request):
 
 
 def admin_users_update(request, pk):
-    context = {'title': 'Админ-панель - Изменение пользователя'}
+    selected_user = User.objects.get(id=pk)
+    if request.method == 'POST':
+        form = UserAdminProfileForm(instance=selected_user, files=request.FILES, data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Вы успешно изменили данные!')
+            return HttpResponseRedirect(reverse('admins:admin_users'))
+    else:
+        form = UserAdminProfileForm(instance=selected_user)
+
+    context = {'title': 'Админ-панель - Изменение пользователя',
+               'form': form,
+               'selected_user': selected_user,
+               }
     return render(request, 'admins/admin-users-update-delete.html', context)
 
 
