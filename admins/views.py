@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.decorators import user_passes_test
 from django.urls import reverse, reverse_lazy
 from django.views.generic.list import ListView
+from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from products.models import ProductCategory
@@ -24,6 +25,10 @@ class UserListView(ListView):
         context['title'] = 'Админ-панель - Пользователи'
         return context
 
+    @method_decorator(user_passes_test(lambda u: u.is_staff))
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserListView, self).dispatch(request, *args, **kwargs)
+
 
 class UserCreateView(CreateView):
     model = User
@@ -35,6 +40,10 @@ class UserCreateView(CreateView):
         context = super(UserCreateView, self).get_context_data(object_list=None, **kwargs)
         context['title'] = 'Админ-панель - Создание пользователя'
         return context
+
+    @method_decorator(user_passes_test(lambda u: u.is_staff))
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserCreateView, self).dispatch(request, *args, **kwargs)
 
 
 class UserUpdateView(UpdateView):
@@ -48,6 +57,10 @@ class UserUpdateView(UpdateView):
         context['title'] = 'Админ-панель - Изменение пользователя'
         return context
 
+    @method_decorator(user_passes_test(lambda u: u.is_staff))
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserUpdateView, self).dispatch(request, *args, **kwargs)
+
 
 class UserDeleteView(DeleteView):
     model = User
@@ -60,6 +73,10 @@ class UserDeleteView(DeleteView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
+    @method_decorator(user_passes_test(lambda u: u.is_staff))
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserDeleteView, self).dispatch(request, *args, **kwargs)
+
 
 class CategoryListView(ListView):
     model = ProductCategory
@@ -69,6 +86,10 @@ class CategoryListView(ListView):
         context = super(CategoryListView, self).get_context_data(object_list=None, **kwargs)
         context['title'] = 'Админ-панель - Категории'
         return context
+
+    @method_decorator(user_passes_test(lambda u: u.is_staff))
+    def dispatch(self, request, *args, **kwargs):
+        return super(CategoryListView, self).dispatch(request, *args, **kwargs)
 
 
 class CategoryCreateView(CreateView):
@@ -82,6 +103,10 @@ class CategoryCreateView(CreateView):
         context['title'] = 'Админ-панель - Создание категории'
         return context
 
+    @method_decorator(user_passes_test(lambda u: u.is_staff))
+    def dispatch(self, request, *args, **kwargs):
+        return super(CategoryCreateView, self).dispatch(request, *args, **kwargs)
+
 
 class CategoryUpdateView(UpdateView):
     model = ProductCategory
@@ -94,8 +119,16 @@ class CategoryUpdateView(UpdateView):
         context['title'] = 'Админ-панель - Изменение категории'
         return context
 
+    @method_decorator(user_passes_test(lambda u: u.is_staff))
+    def dispatch(self, request, *args, **kwargs):
+        return super(CategoryUpdateView, self).dispatch(request, *args, **kwargs)
+
 
 class CategoryDeleteView(DeleteView):
     model = ProductCategory
     template_name = 'admins/admin-category-update-delete.html'
     success_url = reverse_lazy('admins:admin_product_category')
+
+    @method_decorator(user_passes_test(lambda u: u.is_staff))
+    def dispatch(self, request, *args, **kwargs):
+        return super(CategoryDeleteView, self).dispatch(request, *args, **kwargs)
